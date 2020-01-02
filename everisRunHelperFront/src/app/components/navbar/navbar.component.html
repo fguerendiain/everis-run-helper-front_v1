@@ -1,0 +1,21 @@
+<mat-sidenav-container class="navview-container">
+  <mat-sidenav mode="side" opened>
+    <ul>
+      <button mat-button color="primary" (click)= "onClickCrarJiraFromAsiJira()" >{{lbl_agregarJirafromAsiJira}} </button>
+      <br>
+      <button mat-button color="primary" (click)= "onClickEstadoTask()" >{{lbl_taskStatus}} </button>
+      <br>
+      <button mat-button color="primary" [matMenuTriggerFor]="backlog">{{lbl_menuBacklog.menu}}</button>
+      <mat-menu #backlog="matMenu">
+        <button mat-menu-item>{{lbl_menuBacklog.informeDiario}}</button>
+        <button mat-menu-item>{{lbl_menuBacklog.informeMensual}}</button>
+        <button mat-menu-item>{{lbl_menuBacklog.listadoPriorizados}}</button>
+        <button mat-menu-item>{{lbl_menuBacklog.otrasMetricas}}</button>
+      </mat-menu>
+
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
