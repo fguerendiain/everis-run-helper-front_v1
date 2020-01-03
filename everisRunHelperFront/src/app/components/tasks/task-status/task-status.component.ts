@@ -9,7 +9,7 @@ import { ErhaRestServices } from './../../../services/everis-run-helper-api-rest
 })
 export class TaskStatusComponent implements OnInit {
   title: string = 'Consultar estado de tarea por ID';
-  btn_placeholder: string = 'ID de tarea';
+  inp_placeholder: string = 'ID de tarea';
   btn_label: string = 'Buscar';
 
   constructor(private erhaApi: ErhaRestServices) { }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { ItaskStatus } from '../entities/ItaskStatus';
+import { ItaskStatus } from '../entities/ITaskStatus';
+import { ITaskProcess } from '../entities/ITaskProcess';
 
 const endpoint = 'http://10.217.88.164:4780/v1/';
 
@@ -18,8 +19,14 @@ export class ErhaRestServices {
 
   public createJiraFromAsiJira(asiJira: string){
     let req: string = endpoint + 'asijiratojiraconverter/' + asiJira;
-    return this.http.post<ItaskStatus>(req, '');
+    return this.http.post<ITaskProcess>(req, '');
   }
+
+  public getInformeBacklogDiario() {
+    let req: string = endpoint + 'informeBacklogDiario';
+    return this.http.get<ITaskProcess>(req);
+  }
+
 
 }
 

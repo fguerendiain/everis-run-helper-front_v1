@@ -7,10 +7,8 @@
       <br>
       <button mat-button color="primary" [matMenuTriggerFor]="backlog">{{lbl_menuBacklog.menu}}</button>
       <mat-menu #backlog="matMenu">
-        <button mat-menu-item>{{lbl_menuBacklog.informeDiario}}</button>
+        <button mat-menu-item  (click)= "onClickBacklogInformeDiario()" >{{lbl_menuBacklog.informeDiario}}</button>
         <button mat-menu-item>{{lbl_menuBacklog.informeMensual}}</button>
-        <button mat-menu-item>{{lbl_menuBacklog.listadoPriorizados}}</button>
-        <button mat-menu-item>{{lbl_menuBacklog.otrasMetricas}}</button>
       </mat-menu>
 
     </ul>

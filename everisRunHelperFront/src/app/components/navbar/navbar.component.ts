@@ -15,8 +15,6 @@ export class NavbarComponent implements OnInit {
     menu: 'Backlog',
     informeDiario:'Informe Diario',
     informeMensual:'Informe Mensual',
-    listadoPriorizados:'Lisado de Priorizados',
-    otrasMetricas:'Otros'
   };
 
   constructor(private router: Router) { }
@@ -32,5 +30,9 @@ export class NavbarComponent implements OnInit {
 
   onClickEstadoTask(): void {
     this.router.navigate(['taskStatus']);
+  }
+
+  onClickBacklogInformeDiario(): void {
+    this.router.navigate(['backlogInformeDiario'])
   }
 }

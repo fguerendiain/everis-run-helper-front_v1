@@ -10,6 +10,8 @@ import { TaskStatusComponent } from './components/tasks/task-status/task-status.
 import { CreateJiraFromAsiJiraComponent } from './components/tasks/create-jira-from-asi-jira/create-jira-from-asi-jira.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 import {
   MatSidenavModule,
   MatButtonModule,
@@ -17,11 +19,18 @@ import {
   MatInputModule,
   MatFormFieldModule,
   MatToolbarModule,
-  MatMenuModule
+  MatMenuModule,
+  MatOptionModule,
+  MatAutocompleteModule,
+  MatProgressBarModule,
+  MatTableModule
 } from '@angular/material';
 
 import { ErhaRestServices } from './services/everis-run-helper-api-rest.service';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { InformeDiarioComponent } from './components/tasks/backlog/informe-diario/informe-diario.component';
+import { InformeMensualComponent } from './components/tasks/backlog/informe-mensual/informe-mensual.component';
+import { LoadingBarComponent } from './components/utils/loading-bar/loading-bar.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +40,10 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     Page404Component,
     TaskStatusComponent,
     CreateJiraFromAsiJiraComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    InformeDiarioComponent,
+    InformeMensualComponent,
+    LoadingBarComponent
   ],
   imports: [
     BrowserModule,
@@ -44,8 +56,15 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatFormFieldModule,
     HttpClientModule,
     MatToolbarModule,
-    MatMenuModule
-    ],
+    MatMenuModule,
+    MatOptionModule,
+    MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatProgressBarModule,
+    MatTableModule,
+    ChartsModule
+  ],
   exports: [
   ],
   providers: [ErhaRestServices],

@@ -1,0 +1,73 @@
+<mat-card>
+    <mat-card-header>
+      <h2>{{title}}</h2>
+    </mat-card-header>
+    <mat-card-header>
+        <h4>{{taskIdMessage}}</h4>
+    </mat-card-header>
+    <mat-card-content>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-content *ngIf= "showLoadingBar">
+        <app-loading-bar [message] = "loadingMessage" ></app-loading-bar>
+    </mat-card-content>
+    <mat-card-content *ngIf= "!showLoadingBar">
+
+
+        <div>
+            <div>
+              <div style="display: block">
+                <canvas baseChart
+                  [colors]= 'chartColors'
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [plugins]="barChartPlugins"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType">
+                </canvas>
+              </div>
+            </div>
+          </div>
+
+
+    </mat-card-content>
+    <mat-card-content *ngIf= "!showLoadingBar">
+            <table mat-table [dataSource]="backlogData.priorizadosPorRegistro" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="noc">
+                <th mat-header-cell *matHeaderCellDef> {{tbl_priorizadosHeaders.noc}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.noc}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="resumen">
+                <th mat-header-cell *matHeaderCellDef> {{tbl_priorizadosHeaders.resumen}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.resumen}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="modulo">
+                <th mat-header-cell *matHeaderCellDef> {{tbl_priorizadosHeaders.modulo}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.modulo}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="entorno">
+                <th mat-header-cell *matHeaderCellDef> {{tbl_priorizadosHeaders.entorno}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.entorno}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="estado">
+                <th mat-header-cell *matHeaderCellDef> {{tbl_priorizadosHeaders.estado}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef> {{tbl_priorizadosHeaders.fecha}} </th>
+                <td mat-cell *matCellDef="let element"> {{formatPriorizadosUpdateDate(element.fechaCreacion)}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>            
+    </mat-card-content>
+  </mat-card> 
