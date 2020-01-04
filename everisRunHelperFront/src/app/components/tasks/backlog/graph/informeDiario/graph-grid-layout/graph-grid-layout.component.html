@@ -1,0 +1,54 @@
+<div class='graphRenderUpperContainerBkg'>
+    <div class='graphRenderUpperContainer'>
+        <table>
+            <tr>
+                <th>
+                    {{lbl_BacklogPriorizado}}
+                </th>
+                <th>
+                    {{lbl_CreadasVsResueltas}}
+                </th>
+                <th>
+                    {{lbl_Priorizacion}}
+                </th>
+                <th>
+                    {{lbl_Reabiertos}}
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <app-backlog-priorizado [backlogData] = 'backlogData'></app-backlog-priorizado>
+                </td>
+                <td>
+                    <app-creadas-vs-resueltas [backlogData] = 'backlogData'></app-creadas-vs-resueltas>
+                </td>
+                <td>
+                    <app-priorizacion [backlogData] = 'backlogData'></app-priorizacion>
+                </td>
+                <td>
+                    <app-reabiertos [backlogData] = 'backlogData'></app-reabiertos>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class='graphRenderLowerContainer'>
+        <table>
+            <tr>
+                <th>
+                    {{lbl_Distribucion}}
+                </th>
+                <th>
+                    {{lbl_Resumen}}
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <app-distribucion [backlogData] = 'backlogData'></app-distribucion>
+                </td>
+                <td>
+                    <app-resumen [backlogData] = 'backlogData'></app-resumen>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

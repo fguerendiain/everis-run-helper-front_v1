@@ -23,7 +23,8 @@ import {
   MatOptionModule,
   MatAutocompleteModule,
   MatProgressBarModule,
-  MatTableModule
+  MatTableModule,
+  MatGridListModule
 } from '@angular/material';
 
 import { ErhaRestServices } from './services/everis-run-helper-api-rest.service';
@@ -31,6 +32,14 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { InformeDiarioComponent } from './components/tasks/backlog/informe-diario/informe-diario.component';
 import { InformeMensualComponent } from './components/tasks/backlog/informe-mensual/informe-mensual.component';
 import { LoadingBarComponent } from './components/utils/loading-bar/loading-bar.component';
+import { BacklogPriorizadoComponent } from './components/tasks/backlog/graph/informeDiario/backlog-priorizado/backlog-priorizado.component';
+import { CreadasVsResueltasComponent } from './components/tasks/backlog/graph/informeDiario/creadas-vs-resueltas/creadas-vs-resueltas.component';
+import { PriorizacionComponent } from './components/tasks/backlog/graph/informeDiario/priorizacion/priorizacion.component';
+import { ReabiertosComponent } from './components/tasks/backlog/graph/informeDiario/reabiertos/reabiertos.component';
+import { DistribucionComponent } from './components/tasks/backlog/graph/informeDiario/distribucion/distribucion.component';
+import { ResumenComponent } from './components/tasks/backlog/graph/informeDiario/resumen/resumen.component';
+import { ListadoPriorizadosComponent } from './components/tasks/backlog/graph/informeDiario/listado-priorizados/listado-priorizados.component';
+import { GraphGridLayoutComponent } from './components/tasks/backlog/graph/informeDiario/graph-grid-layout/graph-grid-layout.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +52,15 @@ import { LoadingBarComponent } from './components/utils/loading-bar/loading-bar.
     ToolbarComponent,
     InformeDiarioComponent,
     InformeMensualComponent,
-    LoadingBarComponent
+    LoadingBarComponent,
+    BacklogPriorizadoComponent,
+    CreadasVsResueltasComponent,
+    PriorizacionComponent,
+    ReabiertosComponent,
+    DistribucionComponent,
+    ResumenComponent,
+    ListadoPriorizadosComponent,
+    GraphGridLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +80,8 @@ import { LoadingBarComponent } from './components/utils/loading-bar/loading-bar.
     ReactiveFormsModule,
     MatProgressBarModule,
     MatTableModule,
-    ChartsModule
+    ChartsModule,
+    MatGridListModule
   ],
   exports: [
   ],
