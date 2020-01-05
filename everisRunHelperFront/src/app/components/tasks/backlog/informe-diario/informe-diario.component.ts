@@ -11,13 +11,15 @@ export class InformeDiarioComponent implements OnInit {
 
   constructor(private erhaApi: ErhaRestServices) { }
 
+  taskId:string;
+  taskIdMessage: string = 'Id de tarea: '; 
+  loadingMessage: string = 'Generando Informe';
+  showLoadingBar: boolean = true;
+
+
   backlogData;
   title: string = 'Informe Backlog Diario'
   response:string = 'Pendiente';
-  taskId:string;
-  taskIdMessage: string = 'Id de tarea: '; 
-  showLoadingBar: boolean = true;
-  loadingMessage: string = 'Generando Informe';
   priorizadosSubtitle = {
     part1 : 'NOCs - ',
     part2 : 'PRIORIZADOS ',
@@ -60,7 +62,6 @@ export class InformeDiarioComponent implements OnInit {
   getBacklog(): void{
     this.erhaApi.getInformeBacklogDiario().subscribe(data => {
       this.taskId = data.id;
-      this.taskIdMessage += this.taskId;
       this.updateTaskProcees(60,5)
     });
   }

@@ -1,17 +1,39 @@
-.img404NotFound {
-    width: 50%;
-    height: auto;
-    align-self: center;
-    vertical-align: bottom;
-    margin-left: 200px;
+.page404Div{
+    width: 100%;
+    height: 90%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: white;
 }
+
+.img404Div{
+    margin-left: 25vw;
+    height: 100%;
+}
+
+.imgEverisFondo {
+    width: fit-content;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img404NotFound {
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: bottom;
+}
+
 
 .messageDiv{
-    margin-left: 200px;
-    margin-top: 80px;
-    margin-bottom: 80px;
+    margin: 80;
 }
 
-h4{
-    text-align: center;
+h3{
+    padding-top: 3%;
+    padding-left: 5%;
+    color: red
 }

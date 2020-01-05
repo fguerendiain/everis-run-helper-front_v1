@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-header>
+    <h2>{{title}}</h2>
+  </mat-card-header>
+  <mat-card-header *ngIf="showLoadingBar">
+    <h4>{{taskIdMessage + taskId}}</h4>
+  </mat-card-header>
+  <mat-card-content>
+    <form *ngIf="!showLoadingBar">
+      <mat-form-field>
+          <input type="text" placeholder = {{cmb_placeholder}} matInput [formControl]="formProjectsCmbBox" [matAutocomplete]="auto" #selectedProj>
+          <mat-autocomplete #auto= "matAutocomplete">
+              <mat-option *ngFor="let proj of abailableProjects" [value]="proj">
+                  {{proj}}
+              </mat-option>
+          </mat-autocomplete>  
+      </mat-form-field>
+        -
+      <mat-form-field>
+          <input matInput placeholder = {{inp_placeholder}} #inputBox/>
+      </mat-form-field>
+      <button style="margin:5px" mat-raised-button type="button" color='primary' (click)='onCreateJiraFromAsiJira(selectedProj.value , inputBox.value)' >{{btn_label}}</button>
+    </form>
+  </mat-card-content>
+  <mat-card-content *ngIf= "showLoadingBar">
+    <app-loading-bar [message] = "loadingMessage" ></app-loading-bar>
+  </mat-card-content>
+  <div  *ngIf= "showResponse">
+    <mat-card-content *ngIf= "!showResponseOk">
+      <p>{{noDataMessage}}</p>
+    </mat-card-content>
+    <mat-card-content *ngIf= "showResponseOk">
+      <app-process-response [asiJiraInputData]=asiJiraInputData [asiJiraResponse] = asiJiraResponse ></app-process-response>
+    </mat-card-content>
+  </div>
+</mat-card>
+  

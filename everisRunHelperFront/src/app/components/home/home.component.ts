@@ -9,6 +9,9 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
+  imgEverisLogoDir:string = 'assets/images/everisLogo.png';
+  imgEverisFondoDir:string = 'assets/images/everisFondo.jpg';
+
   ngOnInit() {
   }
 

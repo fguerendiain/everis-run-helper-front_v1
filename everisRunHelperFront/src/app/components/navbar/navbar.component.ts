@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   lbl_menuBacklog = {
     menu: 'Backlog',
     informeDiario:'Informe Diario',
-    informeMensual:'Informe Mensual',
+    informeMensual:'Informe Mensual'
   };
 
   constructor(private router: Router) { }

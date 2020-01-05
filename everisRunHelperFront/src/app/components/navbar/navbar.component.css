@@ -1,8 +1,13 @@
 .navview-container {
-  position: absolute;
-  top: 56px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: withe;
+    position: absolute;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: withe;
+  }
+
+ul{
+  padding-left: 0;
+  
 }

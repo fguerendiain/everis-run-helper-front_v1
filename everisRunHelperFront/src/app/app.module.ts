@@ -17,7 +17,8 @@ import {
   MatAutocompleteModule,
   MatProgressBarModule,
   MatTableModule,
-  MatGridListModule
+  MatGridListModule,
+  MatDividerModule
 } from '@angular/material';
 
 
@@ -27,7 +28,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { Page404Component } from './components/page404/page404.component';
 import { TaskStatusComponent } from './components/tasks/task-status/task-status.component';
-import { CreateJiraFromAsiJiraComponent } from './components/tasks/create-jira-from-asi-jira/create-jira-from-asi-jira.component';
+import { CreateJiraFromAsiJiraComponent } from './components/tasks/createJiraFromAsiJira/create-jira-from-asi-jira/create-jira-from-asi-jira.component';
 import { ErhaRestServices } from './services/everis-run-helper-api-rest.service';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { InformeDiarioComponent } from './components/tasks/backlog/informe-diario/informe-diario.component';
@@ -41,6 +42,7 @@ import { DistribucionComponent } from './components/tasks/backlog/graph/informeD
 import { ResumenComponent } from './components/tasks/backlog/graph/informeDiario/resumen/resumen.component';
 import { ListadoPriorizadosComponent } from './components/tasks/backlog/graph/informeDiario/listado-priorizados/listado-priorizados.component';
 import { GraphGridLayoutComponent } from './components/tasks/backlog/graph/informeDiario/graph-grid-layout/graph-grid-layout.component';
+import { ProcessResponseComponent } from './components/tasks/createJiraFromAsiJira/process-response/process-response.component';
 
 
 
@@ -65,7 +67,8 @@ import { GraphGridLayoutComponent } from './components/tasks/backlog/graph/infor
     DistribucionComponent,
     ResumenComponent,
     ListadoPriorizadosComponent,
-    GraphGridLayoutComponent
+    GraphGridLayoutComponent,
+    ProcessResponseComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +89,8 @@ import { GraphGridLayoutComponent } from './components/tasks/backlog/graph/infor
     MatProgressBarModule,
     MatTableModule,
     ChartsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDividerModule
   ],
   exports: [
   ],
