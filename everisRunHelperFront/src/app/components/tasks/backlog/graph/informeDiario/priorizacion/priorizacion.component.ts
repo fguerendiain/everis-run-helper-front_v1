@@ -111,7 +111,8 @@ export class PriorizacionComponent implements OnInit {
         this.dataArrayBaja.push(bajaAux);
         this.dataArrayAlta.push(altaAux);
         this.dataArrayUrgente.push(urgenteAux);
-        }
+      }
+      if((this.dataLabels.length) == 6){break;};
     }
 
     this.barChartData = [ 

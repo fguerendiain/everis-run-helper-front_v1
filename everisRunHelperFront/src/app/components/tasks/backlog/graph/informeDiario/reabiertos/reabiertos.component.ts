@@ -76,6 +76,9 @@ export class ReabiertosComponent implements OnInit {
         this.dataLabels.push(fechaAux);
         this.dataArrayReabiertas.push(reaperturasAux);
         }
+
+        if((this.dataLabels.length) == 6){break;};
+
     }
 
     this.barChartData = [ 

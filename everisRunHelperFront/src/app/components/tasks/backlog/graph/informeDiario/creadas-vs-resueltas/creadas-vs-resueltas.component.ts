@@ -82,7 +82,10 @@ export class CreadasVsResueltasComponent implements OnInit {
         this.dataLabels.push(fechaAux);
         this.dataArrayCreadas.push(creadasAux);
         this.dataArrayResueltas.push(resueltasAux);
-        }
+      }
+
+      if((this.dataLabels.length) == 6){break;};
+
     }
 
     this.barChartData = [ 
