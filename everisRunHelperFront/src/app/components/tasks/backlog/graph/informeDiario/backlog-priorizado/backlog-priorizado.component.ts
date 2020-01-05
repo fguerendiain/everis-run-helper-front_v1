@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-backlog-priorizado',
@@ -10,45 +11,82 @@ import { Label } from 'ng2-charts';
 export class BacklogPriorizadoComponent implements OnInit {
 
   @Input() backlogData;
-  
-  public barChartOptions = {
-    dataset:{
-      categoryPercentage: 0.5,
-      barPercentage: 1
-  },
-    scales:{
-      xAxes: [{}],
-      yAxes: [{}]},
+  @Input() barColors; 
+
+  public dataArrayBacklog: Array<any> = [];
+  public dataLabels: Array<any> = [];
+
+  public chartColorsBackgroundColor: Array<any> = [];
+  public chartColorsBorderColor: Array<any> = [];
+  public chartColorsHoverBackgroundColor: Array<any> = [];
+  public chartColorsHoverBorderColor: Array<any> = [];
+
+  public barChartOptions: ChartOptions = {
+  //  responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [
+        {
+          ticks: {
+            beginAtZero: true
+          }
+        }
+      ],
+      yAxes: [
+        {  
+          ticks: {
+            beginAtZero: true,
+            stepSize: 5
+          }
+        }
+      ] 
+    },
     plugins: {
       datalabels: {
-        anchor: 'end',
-        align: 'end',
+        color: 'black',
+        display: function(context) {
+          return context.dataset.data[context.dataIndex] > 0;
+        }        
       }
     }
   };
+    
 
-  public chartColors: Array<any> = [
-    {backgroundColor:['red','yellow','green']}];
+  public barChartPlugins = [pluginDataLabels];
 
 
-  public barChartLabels: Label[] = ['Urgente', 'Alta', 'Baja'];
+  public barChartLabels: Label[];
   public barChartType: ChartType = 'bar';
   public barChartLegend = false;
-
   public barChartData: ChartDataSets[];
 
-  constructor() { 
-  }
+  constructor() {}
 
   
   ngOnInit() {
-    this.barChartData = [
-      { data: [this.backlogData.backlog.priorizacionDiaUrgente, 
+    this.dataArrayBacklog = [this.backlogData.backlog.priorizacionDiaUrgente, 
           this.backlogData.backlog.priorizacionDiaAlta, 
-          this.backlogData.backlog.priorizacionDiaBaja],},
-      ];
+          this.backlogData.backlog.priorizacionDiaBaja];
       
-      this.barChartData[0].data[0]
+    this.dataLabels = ['Urgente', 'Alta', 'Baja'];
+    this.chartColorsBackgroundColor = [this.barColors.redBackgroundColor,this.barColors.yellowBackgroundColor,this.barColors.greenBackgroundColor];
+    this.chartColorsBorderColor = [this.barColors.redBorderColor,this.barColors.yellowBorderColor,this.barColors.greenBorderColor];
+    this.chartColorsHoverBackgroundColor = [this.barColors.redHoverBackgroundColor,this.barColors.yellowHoverBackgroundColor,this.barColors.greenHoverBackgroundColor];
+    this.chartColorsHoverBorderColor = [this.barColors.redHoverBorderColor,this.barColors.yellowHoverBorderColor,this.barColors.greenHoverBorderColor];
+
+    this.barChartData = [ 
+      { 
+        data:this.dataArrayBacklog,
+        backgroundColor: this.chartColorsBackgroundColor,
+        borderColor: this.chartColorsBorderColor,
+        hoverBackgroundColor: this.chartColorsHoverBackgroundColor,
+        hoverBorderColor: this.chartColorsHoverBorderColor,
+        barPercentage: 0.4,
+        categoryPercentage: 0.9      
+      }
+    ];
+    this.barChartLabels = this.dataLabels;
+
   }
 
 }

@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Page404Component implements OnInit {
 
+  message: string = 'La pagina solicitada no existe';
+  img404NotFound:string = 'assets/images/travolta404.gif';
+
   constructor() { }
 
   ngOnInit() {

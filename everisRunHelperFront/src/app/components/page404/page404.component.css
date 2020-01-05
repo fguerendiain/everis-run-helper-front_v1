@@ -1,0 +1,17 @@
+.img404NotFound {
+    width: 50%;
+    height: auto;
+    align-self: center;
+    vertical-align: bottom;
+    margin-left: 200px;
+}
+
+.messageDiv{
+    margin-left: 200px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+h4{
+    text-align: center;
+}

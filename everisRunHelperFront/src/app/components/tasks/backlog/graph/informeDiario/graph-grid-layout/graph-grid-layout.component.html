@@ -1,51 +1,51 @@
-<div class='graphRenderUpperContainerBkg'>
+<div class='graphRenderUpperContainerBkg' class="mat-elevation-z8">
     <div class='graphRenderUpperContainer'>
-        <table>
+        <table class= 'graphRenderUpperTable'>
             <tr>
-                <th>
+                <th class='graphRenderBoxHeaderBacklogPriorizado'>
                     {{lbl_BacklogPriorizado}}
                 </th>
-                <th>
+                <th class='graphRenderBoxHeaderCreadasVsResueltas'>
                     {{lbl_CreadasVsResueltas}}
                 </th>
-                <th>
+                <th class='graphRenderBoxHeaderPriorizacion'>
                     {{lbl_Priorizacion}}
                 </th>
-                <th>
+                <th class='graphRenderBoxHeaderReabiertos'>
                     {{lbl_Reabiertos}}
                 </th>
             </tr>
             <tr>
-                <td>
-                    <app-backlog-priorizado [backlogData] = 'backlogData'></app-backlog-priorizado>
+                <td class='graphRenderBoxDataBacklogPriorizado'>
+                    <app-backlog-priorizado [barColors] = 'barColors' [backlogData] = 'backlogData'></app-backlog-priorizado>
                 </td>
-                <td>
-                    <app-creadas-vs-resueltas [backlogData] = 'backlogData'></app-creadas-vs-resueltas>
+                <td class='graphRenderBoxDataCreadasVsResueltas'>
+                    <app-creadas-vs-resueltas [barColors] = 'barColors' [backlogData] = 'backlogData'></app-creadas-vs-resueltas>
                 </td>
-                <td>
-                    <app-priorizacion [backlogData] = 'backlogData'></app-priorizacion>
+                <td class='graphRenderBoxDataPriorizacion'>
+                    <app-priorizacion [barColors] = 'barColors' [backlogData] = 'backlogData'></app-priorizacion>
                 </td>
-                <td>
-                    <app-reabiertos [backlogData] = 'backlogData'></app-reabiertos>
+                <td class='graphRenderBoxDataReabiertos'>
+                    <app-reabiertos [barColors] = 'barColors' [backlogData] = 'backlogData'></app-reabiertos>
                 </td>
             </tr>
         </table>
     </div>
     <div class='graphRenderLowerContainer'>
-        <table>
+        <table class= 'graphRenderLowerTable'>
             <tr>
-                <th>
+                <th class='graphRenderBoxHeaderDistribucion'>
                     {{lbl_Distribucion}}
                 </th>
-                <th>
+                <th class='graphRenderBoxHeaderResumen'>
                     {{lbl_Resumen}}
                 </th>
             </tr>
             <tr>
-                <td>
-                    <app-distribucion [backlogData] = 'backlogData'></app-distribucion>
+                <td class='graphRenderBoxDataDistribucion'>
+                    <app-distribucion [barColors] = 'barColors' [backlogData] = 'backlogData'></app-distribucion>
                 </td>
-                <td>
+                <td class='graphRenderBoxDataResumen'>
                     <app-resumen [backlogData] = 'backlogData'></app-resumen>
                 </td>
             </tr>

@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class GraphGridLayoutComponent implements OnInit {
 
   @Input() backlogData;
+  @Input() barColors
 
   lbl_BacklogPriorizado:string = 'BACKLOG PRIORIZADO';
   lbl_CreadasVsResueltas:string = 'CREADAS VS RESUELTAS';
@@ -16,9 +17,11 @@ export class GraphGridLayoutComponent implements OnInit {
   lbl_Distribucion:string = 'DISTRIBUCION';
   lbl_Resumen:string = 'RESUMEN';
 
+  
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

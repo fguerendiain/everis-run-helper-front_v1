@@ -1,21 +1,24 @@
 <mat-card>
-    <mat-card-header>
-      <h2>{{title}}</h2>
-    </mat-card-header>
-    <mat-card-header>
-        <h4>{{taskIdMessage}}</h4>
-    </mat-card-header>
-    <mat-card-content>
-    </mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-content *ngIf= "showLoadingBar">
-        <app-loading-bar [message] = "loadingMessage" ></app-loading-bar>
-    </mat-card-content>
-    <mat-card-content *ngIf= "!showLoadingBar">
-      <app-graph-grid-layout [backlogData] = 'backlogData'></app-graph-grid-layout>
-    </mat-card-content>
-    <mat-card-content *ngIf= "!showLoadingBar">
-      <app-listado-priorizados [backlogData] = "backlogData" ></app-listado-priorizados>
-    </mat-card-content>
-  </mat-card> 
+  <mat-card-header>
+    <h2>{{title}}</h2>
+  </mat-card-header>
+  <mat-card-header>
+    <h4>{{taskIdMessage}}</h4>
+  </mat-card-header>
+</mat-card>
+<mat-card>
+  <mat-card-content *ngIf= "showLoadingBar">
+    <app-loading-bar [message] = "loadingMessage" ></app-loading-bar>
+  </mat-card-content>
+  <mat-card-content *ngIf= "!showLoadingBar">
+    <app-graph-grid-layout [barColors] = 'barColors' [backlogData] = 'backlogData'></app-graph-grid-layout>
+  </mat-card-content>
+  <mat-card-header *ngIf= "!showLoadingBar" class = 'priorizadosSubtitle'>
+    <div class='priorizadosSubtitleblack'> {{priorizadosSubtitle.part1}} </div>
+    <div class='priorizadosSubtitlered'>{{priorizadosSubtitle.part2}}</div>
+    <div class='priorizadosSubtitleblack'> {{priorizadosSubtitle.part3}} </div>
+  </mat-card-header>
+  <mat-card-content *ngIf= "!showLoadingBar">
+    <app-listado-priorizados [backlogData] = "backlogData" ></app-listado-priorizados>
+  </mat-card-content>
+</mat-card> 
