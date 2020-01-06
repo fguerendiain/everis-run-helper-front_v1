@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class ToolbarComponent implements OnInit {
 
-  title: string = 'Everis Run Helper';
+  title: string = 'Everis Run Helper App';
   imgEverisLogoDir:string = 'assets/images/everisLogo.png';
 
   constructor() { }
