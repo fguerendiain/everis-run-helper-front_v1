@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   imgEverisLogoDir:string = 'assets/images/everisLogo.png';
-  imgEverisFondoDir:string = 'assets/images/everisFondo.jpg';
+  message:string = 'E.R.H.A.';
 
   ngOnInit() {
   }

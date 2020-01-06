@@ -1,4 +1,4 @@
-div{
+.backGroundImgDiv{
     width: 100%;
     height: 90%;
     background-position: center center;
@@ -8,15 +8,9 @@ div{
     background-color: white;
 }
 
-.imgEverisFondo {
-    width: fit-content;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 h1{
-    padding-top: 20%;
-    text-align: center;
+    margin: 0;
+    padding-top: 10%;
+    padding-left: 10%;
     font-size: 70px;
 }

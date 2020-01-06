@@ -9,31 +9,24 @@
 }
 
 .img404Div{
-    margin-left: 25vw;
-    height: 100%;
-}
-
-.imgEverisFondo {
-    width: fit-content;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    position: absolute;
 }
 
 .img404NotFound {
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-    vertical-align: bottom;
+    width: 49%;
+    position: absolute;
+    left: 50%;
+    bottom:10%;
 }
-
 
 .messageDiv{
     margin: 80;
 }
 
-h3{
+h2{
+    margin: 0;
     padding-top: 3%;
     padding-left: 5%;
+    font-style: italic;
     color: red
 }
