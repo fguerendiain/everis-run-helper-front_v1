@@ -11,7 +11,7 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 export class CreadasVsResueltasComponent implements OnInit {
 
   @Input() backlogData;
-  @Input() barColors; 
+  @Input() barColors;
 
   public dataArrayCreadas: Array<any> = [];
   public dataArrayResueltas: Array<any> = [];
@@ -30,19 +30,26 @@ export class CreadasVsResueltasComponent implements OnInit {
     scales: {
       xAxes: [
         {
+          gridLines: {
+            display: false
+          },
           ticks: {
             beginAtZero: true
           }
         }
       ],
       yAxes: [
-        {  
+        {
+          gridLines: {
+            zeroLineWidth: 1,
+            zeroLineColor: 'grey'
+          },
           ticks: {
             beginAtZero: true,
             stepSize: 5
           }
         }
-      ] 
+      ]
     },
     legend: {
       position: 'bottom',
@@ -50,13 +57,13 @@ export class CreadasVsResueltasComponent implements OnInit {
         fontSize: 10,
         usePointStyle: true
       }
-    },    
+    },
     plugins: {
       datalabels: {
         color: 'black',
-        display: function(context) {
+        display: (context) => {
           return context.dataset.data[context.dataIndex] > 0;
-        }        
+        }
       }
     }
   };
@@ -67,57 +74,60 @@ export class CreadasVsResueltasComponent implements OnInit {
 
   constructor() {}
 
-  
+
   ngOnInit() {
     let fechaAux: string;
     let creadasAux: string;
     let resueltasAux: string;
-    for(let i = (this.backlogData.datosUltimos6DiasArray).length - 1 ; i > 0; i--){
+    for (let i = (this.backlogData.datosUltimos6DiasArray).length - 1 ; i > 0; i--) {
       fechaAux = this.formatDate(this.backlogData.datosUltimos6DiasArray[i].fecha);
-      creadasAux = this.backlogData.datosUltimos6DiasArray[i].creadas; 
+      creadasAux = this.backlogData.datosUltimos6DiasArray[i].creadas;
       resueltasAux = this.backlogData.datosUltimos6DiasArray[i].resueltas;
 
-      if(creadasAux != '0' && resueltasAux != '0'){
+      if (creadasAux !== '0' && resueltasAux !== '0') {
 
         this.dataLabels.push(fechaAux);
         this.dataArrayCreadas.push(creadasAux);
         this.dataArrayResueltas.push(resueltasAux);
       }
 
-      if((this.dataLabels.length) == 6){break;};
-
+      if ((this.dataLabels.length) > 6) {
+        this.dataLabels.shift();
+        this.dataArrayCreadas.shift();
+        this.dataArrayResueltas.shift();
+      }
     }
 
-    this.barChartData = [ 
-      { 
-        data:this.dataArrayCreadas,
-        label:'Creadas',
+    this.barChartData = [
+      {
+        data: this.dataArrayCreadas,
+        label: 'Creadas',
         backgroundColor: this.barColors.redBackgroundColor,
         borderColor: this.barColors.redBorderColor,
         hoverBackgroundColor: this.barColors.redHoverBackgroundColor,
         hoverBorderColor: this.barColors.redHoverBorderColor,
         barPercentage: 0.4,
-        categoryPercentage: 0.9
+        categoryPercentage: 0.7
       },
-      { 
-        data:this.dataArrayResueltas,
-        label:'Resueltas',
+      {
+        data: this.dataArrayResueltas,
+        label: 'Resueltas',
         backgroundColor: this.barColors.greenBackgroundColor,
         borderColor: this.barColors.greenBorderColor,
         hoverBackgroundColor: this.barColors.greenHoverBackgroundColor,
         hoverBorderColor: this.barColors.greenHoverBorderColor,
         barPercentage: 0.4,
-        categoryPercentage: 0.9
+        categoryPercentage: 0.7
       }
     ];
     this.barChartLabels = this.dataLabels;
 
   }
 
-  formatDate(date:string):string{
-    let dia: string = date.substr(6,2);
-    let mes: string = date.substr(4,2);
-    return dia+'/'+mes;
+  formatDate(date: string): string {
+    const dia: string = date.substr(6, 2);
+    const mes: string = date.substr(4, 2);
+    return dia + '/' + mes;
   }
 
 }

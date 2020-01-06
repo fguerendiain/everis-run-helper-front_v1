@@ -29,18 +29,18 @@ export class ResumenComponent implements OnInit {
       estado : 'Estado',
       cantidad : 'Cantidad',
       reaperturas : 'Reaperturas',
-      priorizados : 'Priorizados '+ this.formatPriorizadosUpdateDate(),
+      priorizados : 'Priorizados ' + this.formatPriorizadosUpdateDate(),
       repetitivos : 'Repetitivos',
       totalBandeja : 'Total Bandeja',
       totalPendientes : 'Total Pendientes'
     }
   }
 
-  formatPriorizadosUpdateDate():string{
-    let format = 'dd/MM';
-    let myDate = new Date().toLocaleString();
-    let locale = 'en-US';
-    let formattedDate = formatDate(myDate, format, locale);
+  formatPriorizadosUpdateDate(): string {
+    const format = 'MM/dd';
+    const myDate = new Date().toLocaleString();
+    const locale = 'en-US';
+    const formattedDate = formatDate(myDate, format, locale);
     return formattedDate;
   }
 }

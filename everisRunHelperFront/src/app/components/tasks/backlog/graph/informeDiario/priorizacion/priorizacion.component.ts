@@ -11,7 +11,7 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 export class PriorizacionComponent implements OnInit {
 
   @Input() backlogData;
-  @Input() barColors; 
+  @Input() barColors;
 
   public dataArrayBaja: Array<any> = [];
   public dataArrayAlta: Array<any> = [];
@@ -31,20 +31,27 @@ export class PriorizacionComponent implements OnInit {
     scales: {
       xAxes: [
         {
+          gridLines: {
+            display: false
+          },
           ticks: {
             beginAtZero: true
           }
         }
       ],
       yAxes: [
-        {  
+        {
+          gridLines: {
+            zeroLineWidth: 1,
+            zeroLineColor: 'grey'
+          },
           ticks: {
             beginAtZero: true,
             stepSize: 20,
             max: 100
           }
         }
-      ] 
+      ]
     },
     legend: {
       position: 'bottom',
@@ -52,16 +59,16 @@ export class PriorizacionComponent implements OnInit {
         fontSize: 10,
         usePointStyle: true
       }
-    },    
+    },
     plugins: {
       datalabels: {
-        formatter: function(value, context) {
+        formatter: (value, context) => {
           return '%' + value;
-        },        
+        },
         color: 'black',
-        display: function(context) {
+        display: (context) => {
           return context.dataset.data[context.dataIndex] > 0;
-        }        
+        }
       }
     }
   };
@@ -72,7 +79,7 @@ export class PriorizacionComponent implements OnInit {
 
   constructor() {}
 
-  
+
   ngOnInit() {
     let bajaAux: number;
     let altaAux: number;
@@ -83,26 +90,26 @@ export class PriorizacionComponent implements OnInit {
     let total: number;
     let maxValue: number;
 
-    for(let i = (this.backlogData.datosUltimos6DiasArray).length - 1 ; i > 0; i--){
+    for (let i = (this.backlogData.datosUltimos6DiasArray).length - 1 ; i > 0; i--) {
       fechaAux = this.formatDate(this.backlogData.datosUltimos6DiasArray[i].fecha);
-      creadasAux = this.backlogData.datosUltimos6DiasArray[i].creadas; 
+      creadasAux = this.backlogData.datosUltimos6DiasArray[i].creadas;
       resueltasAux = this.backlogData.datosUltimos6DiasArray[i].resueltas;
 
-      bajaAux = Math.trunc(this.backlogData.datosUltimos6DiasArray[i].bajaPriorizadoPorcentaje*100);
-      altaAux = Math.trunc(this.backlogData.datosUltimos6DiasArray[i].altaPriorizadoPorcentaje*100);
-      urgenteAux = Math.trunc(this.backlogData.datosUltimos6DiasArray[i].urgentePriorizadoPorcentaje*100);
+      bajaAux = Math.trunc(this.backlogData.datosUltimos6DiasArray[i].bajaPriorizadoPorcentaje * 100);
+      altaAux = Math.trunc(this.backlogData.datosUltimos6DiasArray[i].altaPriorizadoPorcentaje * 100);
+      urgenteAux = Math.trunc(this.backlogData.datosUltimos6DiasArray[i].urgentePriorizadoPorcentaje * 100);
 
-      if(creadasAux != '0' && resueltasAux != '0'){
-        total = bajaAux+altaAux+urgenteAux;
-        if(total != 100){
-          maxValue = Math.max(bajaAux,altaAux,urgenteAux);
-          if(maxValue == bajaAux){
+      if (creadasAux !== '0' && resueltasAux !== '0') {
+        total = bajaAux + altaAux + urgenteAux;
+        if ( total !== 100) {
+          maxValue = Math.max(bajaAux, altaAux, urgenteAux);
+          if (maxValue === bajaAux) {
             bajaAux = bajaAux - 1;
           }
-          if(maxValue == altaAux){
+          if (maxValue === altaAux) {
             altaAux = altaAux - 1;
           }
-          if(maxValue == urgenteAux){
+          if (maxValue === urgenteAux) {
             urgenteAux = urgenteAux - 1;
           }
         }
@@ -112,13 +119,18 @@ export class PriorizacionComponent implements OnInit {
         this.dataArrayAlta.push(altaAux);
         this.dataArrayUrgente.push(urgenteAux);
       }
-      if((this.dataLabels.length) == 6){break;};
+      if ((this.dataLabels.length) > 6) {
+        this.dataLabels.shift();
+        this.dataArrayBaja.shift();
+        this.dataArrayAlta.shift();
+        this.dataArrayUrgente.shift();
+      }
     }
 
-    this.barChartData = [ 
-      { 
-        data:this.dataArrayBaja,
-        label:'baja',
+    this.barChartData = [
+      {
+        data: this.dataArrayBaja,
+        label: 'baja',
         backgroundColor: this.barColors.greenBackgroundColor,
         borderColor: this.barColors.greenBorderColor,
         hoverBackgroundColor: this.barColors.greenHoverBackgroundColor,
@@ -127,9 +139,9 @@ export class PriorizacionComponent implements OnInit {
         barPercentage: 0.4,
         categoryPercentage: 0.9
       },
-      { 
-        data:this.dataArrayAlta,
-        label:'alta',
+      {
+        data: this.dataArrayAlta,
+        label: 'media',
         backgroundColor: this.barColors.yellowBackgroundColor,
         borderColor: this.barColors.yellowBorderColor,
         hoverBackgroundColor: this.barColors.yellowHoverBackgroundColor,
@@ -138,9 +150,9 @@ export class PriorizacionComponent implements OnInit {
         barPercentage: 0.4,
         categoryPercentage: 0.9
       },
-      { 
-        data:this.dataArrayUrgente,
-        label:'urgente',
+      {
+        data: this.dataArrayUrgente,
+        label: 'alta',
         backgroundColor: this.barColors.redBackgroundColor,
         borderColor: this.barColors.redBorderColor,
         hoverBackgroundColor: this.barColors.redHoverBackgroundColor,
@@ -154,9 +166,9 @@ export class PriorizacionComponent implements OnInit {
     this.barChartLabels = this.dataLabels;
   }
 
-  formatDate(date:string):string{
-    let dia: string = date.substr(6,2);
-    let mes: string = date.substr(4,2);
-    return dia+'/'+mes;
+  formatDate(date: string): string {
+    const dia: string = date.substr(6, 2);
+    const mes: string = date.substr(4, 2);
+    return dia + '/' + mes;
   }
 }

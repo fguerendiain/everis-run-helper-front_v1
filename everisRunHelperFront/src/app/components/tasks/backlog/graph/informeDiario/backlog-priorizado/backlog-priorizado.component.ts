@@ -11,7 +11,7 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 export class BacklogPriorizadoComponent implements OnInit {
 
   @Input() backlogData;
-  @Input() barColors; 
+  @Input() barColors;
 
   public dataArrayBacklog: Array<any> = [];
   public dataLabels: Array<any> = [];
@@ -27,30 +27,36 @@ export class BacklogPriorizadoComponent implements OnInit {
     scales: {
       xAxes: [
         {
+          gridLines: {
+            display: false
+          },
           ticks: {
             beginAtZero: true
           }
         }
       ],
       yAxes: [
-        {  
+        {
+          gridLines: {
+            zeroLineWidth: 1,
+            zeroLineColor: 'grey',
+          },
           ticks: {
             beginAtZero: true,
             stepSize: 5
           }
         }
-      ] 
+      ]
     },
     plugins: {
       datalabels: {
         color: 'black',
-        display: function(context) {
+        display: (context) => {
           return context.dataset.data[context.dataIndex] > 0;
-        }        
+        }
       }
     }
   };
-    
 
   public barChartPlugins = [pluginDataLabels];
 
@@ -62,27 +68,43 @@ export class BacklogPriorizadoComponent implements OnInit {
 
   constructor() {}
 
-  
-  ngOnInit() {
-    this.dataArrayBacklog = [this.backlogData.backlog.priorizacionDiaUrgente, 
-          this.backlogData.backlog.priorizacionDiaAlta, 
-          this.backlogData.backlog.priorizacionDiaBaja];
-      
-    this.dataLabels = ['Urgente', 'Alta', 'Baja'];
-    this.chartColorsBackgroundColor = [this.barColors.redBackgroundColor,this.barColors.yellowBackgroundColor,this.barColors.greenBackgroundColor];
-    this.chartColorsBorderColor = [this.barColors.redBorderColor,this.barColors.yellowBorderColor,this.barColors.greenBorderColor];
-    this.chartColorsHoverBackgroundColor = [this.barColors.redHoverBackgroundColor,this.barColors.yellowHoverBackgroundColor,this.barColors.greenHoverBackgroundColor];
-    this.chartColorsHoverBorderColor = [this.barColors.redHoverBorderColor,this.barColors.yellowHoverBorderColor,this.barColors.greenHoverBorderColor];
 
-    this.barChartData = [ 
-      { 
-        data:this.dataArrayBacklog,
+  ngOnInit() {
+    this.dataArrayBacklog = [this.backlogData.backlog.priorizacionDiaUrgente,
+          this.backlogData.backlog.priorizacionDiaAlta,
+          this.backlogData.backlog.priorizacionDiaBaja];
+
+    this.dataLabels = ['Urgente', 'Alta', 'Baja'];
+
+    this.chartColorsBackgroundColor = [
+      this.barColors.redBackgroundColor,
+      this.barColors.yellowBackgroundColor,
+      this.barColors.greenBackgroundColor];
+
+    this.chartColorsBorderColor = [
+      this.barColors.redBorderColor,
+      this.barColors.yellowBorderColor,
+      this.barColors.greenBorderColor];
+
+    this.chartColorsHoverBackgroundColor = [
+      this.barColors.redHoverBackgroundColor,
+      this.barColors.yellowHoverBackgroundColor,
+      this.barColors.greenHoverBackgroundColor];
+
+    this.chartColorsHoverBorderColor = [
+      this.barColors.redHoverBorderColor,
+      this.barColors.yellowHoverBorderColor,
+      this.barColors.greenHoverBorderColor];
+
+    this.barChartData = [
+      {
+        data: this.dataArrayBacklog,
         backgroundColor: this.chartColorsBackgroundColor,
         borderColor: this.chartColorsBorderColor,
         hoverBackgroundColor: this.chartColorsHoverBackgroundColor,
         hoverBorderColor: this.chartColorsHoverBorderColor,
         barPercentage: 0.4,
-        categoryPercentage: 0.9      
+        categoryPercentage: 0.9
       }
     ];
     this.barChartLabels = this.dataLabels;

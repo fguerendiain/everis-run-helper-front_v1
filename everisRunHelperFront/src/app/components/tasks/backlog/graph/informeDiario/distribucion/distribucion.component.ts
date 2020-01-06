@@ -11,7 +11,7 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 export class DistribucionComponent implements OnInit {
 
   @Input() backlogData;
-  @Input() barColors; 
+  @Input() barColors;
 
   public dataArrayPrd: Array<any> = [];
   public dataArrayHml: Array<any> = [];
@@ -31,19 +31,26 @@ export class DistribucionComponent implements OnInit {
     scales: {
       xAxes: [
         {
+          gridLines: {
+            display: false
+          },
           ticks: {
             beginAtZero: true
           }
         }
       ],
       yAxes: [
-        {  
+        {
+          gridLines: {
+            zeroLineWidth: 1,
+            zeroLineColor: 'grey'
+          },
           ticks: {
             beginAtZero: true,
             stepSize: 2
           }
         }
-      ] 
+      ]
     },
     legend: {
       position: 'bottom',
@@ -51,13 +58,13 @@ export class DistribucionComponent implements OnInit {
         fontSize: 10,
         usePointStyle: true
       }
-    },    
+    },
     plugins: {
       datalabels: {
         color: 'black',
-        display: function(context) {
+        display: (context) => {
           return context.dataset.data[context.dataIndex] > 0;
-        }        
+        }
       }
     }
   };
@@ -68,17 +75,15 @@ export class DistribucionComponent implements OnInit {
 
   constructor() {}
 
-  
   ngOnInit() {
     let moduleAux: string;
     let prodAux: number;
     let hmlAux: number;
     let capaAux: number;
 
-    
-    for(let i = 0 ; i < (this.backlogData.distribucionModulo).length ; i++){
+    for (let i = 0 ; i < (this.backlogData.distribucionModulo).length ; i++) {
       moduleAux = this.formatModule(this.backlogData.distribucionModulo[i].module);
-      prodAux = this.backlogData.distribucionModulo[i].prd; 
+      prodAux = this.backlogData.distribucionModulo[i].prd;
       hmlAux = this.backlogData.distribucionModulo[i].hml;
       capaAux = this.backlogData.distribucionModulo[i].capa;
 
@@ -91,38 +96,36 @@ export class DistribucionComponent implements OnInit {
     let sumaDeTicketsI = 0;
     let sumaDeTicketsJ = 0;
 
-    for(let j = 0 ; j < this.dataLabels.length ; j++)
-    {
-        for(let i = j+1 ; i < this.dataLabels.length ; i++)
-        {
+    for (let j = 0 ; j < this.dataLabels.length ; j++) {
+        for (let i = j + 1 ; i < this.dataLabels.length ; i++) {
+
           sumaDeTicketsI = this.dataArrayPrd[i] + this.dataArrayHml[i] + this.dataArrayCapa[i];
           sumaDeTicketsJ = this.dataArrayPrd[j] + this.dataArrayHml[j] + this.dataArrayCapa[j];
 
-          if(sumaDeTicketsI > sumaDeTicketsJ)
-            {
-                let tempAuxPrd = this.dataArrayPrd[i];
+          if (sumaDeTicketsI > sumaDeTicketsJ) {
+                const tempAuxPrd = this.dataArrayPrd[i];
                 this.dataArrayPrd[i] = this.dataArrayPrd[j];
                 this.dataArrayPrd[j] = tempAuxPrd;
 
-                let tempAuxHml = this.dataArrayHml[i];
+                const tempAuxHml = this.dataArrayHml[i];
                 this.dataArrayHml[i] = this.dataArrayHml[j];
                 this.dataArrayHml[j] = tempAuxHml;
 
-                let tempAuxCapa = this.dataArrayCapa[i];
+                const tempAuxCapa = this.dataArrayCapa[i];
                 this.dataArrayCapa[i] = this.dataArrayCapa[j];
                 this.dataArrayCapa[j] = tempAuxCapa;
 
-                let tempAuxLabel = this.dataLabels[i];
+                const tempAuxLabel = this.dataLabels[i];
                 this.dataLabels[i] = this.dataLabels[j];
                 this.dataLabels[j] = tempAuxLabel;
             }
         }
     }
 
-    this.barChartData = [ 
-      { 
-        data:this.dataArrayCapa,
-        label:'capa',
+    this.barChartData = [
+      {
+        data: this.dataArrayCapa,
+        label: 'capa',
         backgroundColor: this.barColors.greenBackgroundColor,
         borderColor: this.barColors.greenBorderColor,
         hoverBackgroundColor: this.barColors.greenHoverBackgroundColor,
@@ -131,9 +134,9 @@ export class DistribucionComponent implements OnInit {
         barPercentage: 0.4,
         categoryPercentage: 0.9
       },
-      { 
-        data:this.dataArrayHml,
-        label:'hml',
+      {
+        data: this.dataArrayHml,
+        label: 'hml',
         backgroundColor: this.barColors.yellowBackgroundColor,
         borderColor: this.barColors.yellowBorderColor,
         hoverBackgroundColor: this.barColors.yellowHoverBackgroundColor,
@@ -142,9 +145,9 @@ export class DistribucionComponent implements OnInit {
         barPercentage: 0.4,
         categoryPercentage: 0.9
       },
-      { 
-        data:this.dataArrayPrd,
-        label:'prd',
+      {
+        data: this.dataArrayPrd,
+        label: 'prd',
         backgroundColor: this.barColors.blueBackgroundColor,
         borderColor: this.barColors.blueBorderColor,
         hoverBackgroundColor: this.barColors.blueHoverBackgroundColor,
@@ -158,13 +161,13 @@ export class DistribucionComponent implements OnInit {
     this.barChartLabels = this.dataLabels;
   }
 
-  formatModule(date:string):string{
+  formatModule(date: string): string {
     let modulo: string = date.substr(5);
 
-    if (modulo == 'SISTEMAS EXTERNOS'){
+    if (modulo === 'SISTEMAS EXTERNOS') {
       modulo = 'S.EXTERNOS';
     }
-    if (modulo == 'WORKFLOW CERRADO'){
+    if (modulo === 'WORKFLOW CERRADO') {
       modulo = 'WORKFLOW';
     }
 
