@@ -29,7 +29,7 @@ export class ListadoPriorizadosComponent implements OnInit {
   formatPriorizadosUpdateDate(element:string): string{
     if(!isNullOrUndefined(element)){
       let anio: string = element.substr(0,4);
-      let mes: string = element.substr(5,2);;
+      let mes: string = element.substr(4,2);;
       let dia: string= element.substr(6,2);;
       return dia+'/'+mes+'/'+anio;
     }
