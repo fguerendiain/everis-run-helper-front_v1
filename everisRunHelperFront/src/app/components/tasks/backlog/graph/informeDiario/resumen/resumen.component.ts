@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { formatDate } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-resumen',
@@ -12,9 +13,12 @@ export class ResumenComponent implements OnInit {
 
   tblDataSet;
   tblTitles;
+  myDate: string;
+s
 
-
-  constructor() { }
+  constructor(private datePipe: DatePipe) {
+    this.myDate = this.datePipe.transform(new Date(), 'dd/MM');
+   }
 
   ngOnInit() {
     this.tblDataSet = {
@@ -29,18 +33,10 @@ export class ResumenComponent implements OnInit {
       estado : 'Estado',
       cantidad : 'Cantidad',
       reaperturas : 'Reaperturas',
-      priorizados : 'Priorizados ' + this.formatPriorizadosUpdateDate(),
+      priorizados : 'Priorizados ' + this.myDate,
       repetitivos : 'Repetitivos',
       totalBandeja : 'Total Bandeja',
       totalPendientes : 'Total Pendientes'
     }
-  }
-
-  formatPriorizadosUpdateDate(): string {
-    const format = 'MM/dd';
-    const myDate = new Date().toLocaleString();
-    const locale = 'en-US';
-    const formattedDate = formatDate(myDate, format, locale);
-    return formattedDate;
   }
 }

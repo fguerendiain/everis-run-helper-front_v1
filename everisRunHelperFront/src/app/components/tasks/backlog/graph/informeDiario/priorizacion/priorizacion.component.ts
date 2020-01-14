@@ -90,14 +90,14 @@ export class PriorizacionComponent implements OnInit {
     let total: number;
     let maxValue: number;
 
-    for (let i = (this.backlogData.datosUltimos6DiasArray).length - 1 ; i > 0; i--) {
-      fechaAux = this.formatDate(this.backlogData.datosUltimos6DiasArray[i].fecha);
-      creadasAux = this.backlogData.datosUltimos6DiasArray[i].creadas;
-      resueltasAux = this.backlogData.datosUltimos6DiasArray[i].resueltas;
+    for (let i = (this.backlogData.datosUltimosDiasArray).length - 1 ; i > 0; i--) {
+      fechaAux = this.formatDate(this.backlogData.datosUltimosDiasArray[i].fecha);
+      creadasAux = this.backlogData.datosUltimosDiasArray[i].creadas;
+      resueltasAux = this.backlogData.datosUltimosDiasArray[i].resueltas;
 
-      bajaAux = Math.trunc(this.backlogData.datosUltimos6DiasArray[i].bajaPriorizadoPorcentaje * 100);
-      altaAux = Math.trunc(this.backlogData.datosUltimos6DiasArray[i].altaPriorizadoPorcentaje * 100);
-      urgenteAux = Math.trunc(this.backlogData.datosUltimos6DiasArray[i].urgentePriorizadoPorcentaje * 100);
+      bajaAux = Math.trunc(this.backlogData.datosUltimosDiasArray[i].bajaPriorizadoPorcentaje * 100);
+      altaAux = Math.trunc(this.backlogData.datosUltimosDiasArray[i].altaPriorizadoPorcentaje * 100);
+      urgenteAux = Math.trunc(this.backlogData.datosUltimosDiasArray[i].urgentePriorizadoPorcentaje * 100);
 
       if (creadasAux !== '0' && resueltasAux !== '0') {
         total = bajaAux + altaAux + urgenteAux;

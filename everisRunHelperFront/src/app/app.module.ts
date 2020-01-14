@@ -1,10 +1,11 @@
+//MODULES
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule} from 'ng2-charts';
+import { AppRoutingModule } from './app-routing.module';
 import {
   MatSidenavModule,
   MatButtonModule,
@@ -22,14 +23,13 @@ import {
 } from '@angular/material';
 
 
-import { AppRoutingModule } from './app-routing.module';
+//COMPONENT
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { Page404Component } from './components/page404/page404.component';
 import { TaskStatusComponent } from './components/tasks/task-status/task-status.component';
 import { CreateJiraFromAsiJiraComponent } from './components/tasks/createJiraFromAsiJira/create-jira-from-asi-jira/create-jira-from-asi-jira.component';
-import { ErhaRestServices } from './services/everis-run-helper-api-rest.service';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { InformeDiarioComponent } from './components/tasks/backlog/informe-diario/informe-diario.component';
 import { InformeMensualComponent } from './components/tasks/backlog/informe-mensual/informe-mensual.component';
@@ -44,8 +44,9 @@ import { ListadoPriorizadosComponent } from './components/tasks/backlog/graph/in
 import { GraphGridLayoutComponent } from './components/tasks/backlog/graph/informeDiario/graph-grid-layout/graph-grid-layout.component';
 import { ProcessResponseComponent } from './components/tasks/createJiraFromAsiJira/process-response/process-response.component';
 
-
-
+//SERVICE
+import { ErhaRestServices } from './services/everis-run-helper-api-rest.service';
+import { DatePipe } from '@angular/common'
 
 
 @NgModule({
@@ -94,7 +95,7 @@ import { ProcessResponseComponent } from './components/tasks/createJiraFromAsiJi
   ],
   exports: [
   ],
-  providers: [ErhaRestServices],
+  providers: [ErhaRestServices,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -71,12 +71,12 @@ export class ReabiertosComponent implements OnInit {
     let resueltasAux: string;
     let reaperturasAux: number;
 
-    for (let i = (this.backlogData.datosUltimos6DiasArray).length - 1 ; i > 0; i--) {
-      fechaAux = this.formatDate(this.backlogData.datosUltimos6DiasArray[i].fecha);
-      reaperturasAux = Math.trunc(this.backlogData.datosUltimos6DiasArray[i].reaperturas);
+    for (let i = (this.backlogData.datosUltimosDiasArray).length - 1 ; i > 0; i--) {
+      fechaAux = this.formatDate(this.backlogData.datosUltimosDiasArray[i].fecha);
+      reaperturasAux = Math.trunc(this.backlogData.datosUltimosDiasArray[i].reaperturas);
 
-      creadasAux = this.backlogData.datosUltimos6DiasArray[i].creadas;
-      resueltasAux = this.backlogData.datosUltimos6DiasArray[i].resueltas;
+      creadasAux = this.backlogData.datosUltimosDiasArray[i].creadas;
+      resueltasAux = this.backlogData.datosUltimosDiasArray[i].resueltas;
 
       if (creadasAux !== '0' && resueltasAux !== '0') {
         this.dataLabels.push(fechaAux);

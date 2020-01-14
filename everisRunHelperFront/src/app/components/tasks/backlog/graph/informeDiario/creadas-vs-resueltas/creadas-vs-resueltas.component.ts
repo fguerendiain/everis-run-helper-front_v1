@@ -79,10 +79,10 @@ export class CreadasVsResueltasComponent implements OnInit {
     let fechaAux: string;
     let creadasAux: string;
     let resueltasAux: string;
-    for (let i = (this.backlogData.datosUltimos6DiasArray).length - 1 ; i > 0; i--) {
-      fechaAux = this.formatDate(this.backlogData.datosUltimos6DiasArray[i].fecha);
-      creadasAux = this.backlogData.datosUltimos6DiasArray[i].creadas;
-      resueltasAux = this.backlogData.datosUltimos6DiasArray[i].resueltas;
+    for (let i = (this.backlogData.datosUltimosDiasArray).length - 1 ; i > 0; i--) {
+      fechaAux = this.formatDate(this.backlogData.datosUltimosDiasArray[i].fecha);
+      creadasAux = this.backlogData.datosUltimosDiasArray[i].creadas;
+      resueltasAux = this.backlogData.datosUltimosDiasArray[i].resueltas;
 
       if (creadasAux !== '0' && resueltasAux !== '0') {
 
