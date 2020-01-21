@@ -40,6 +40,7 @@ export class ReabiertosComponent implements OnInit {
       yAxes: [
         {
           gridLines: {
+            lineWidth: 0,
             zeroLineWidth: 1,
             zeroLineColor: 'grey'
           },

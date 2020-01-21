@@ -13,21 +13,24 @@ export class ResumenComponent implements OnInit {
 
   tblDataSet;
   tblTitles;
+  yesterday: Date;
   myDate: string;
-s
+
 
   constructor(private datePipe: DatePipe) {
-    this.myDate = this.datePipe.transform(new Date(), 'dd/MM');
+    this.yesterday = new Date();
+    this.yesterday.setDate(this.yesterday.getDate() - 1);
+    this.myDate = this.datePipe.transform(this.yesterday, 'dd/MM');
    }
 
   ngOnInit() {
     this.tblDataSet = {
-      reaperturas : this.backlogData.backlog.reaperturas,
+      reaperturas : (this.backlogData.datosUltimosDiasArray[1]).reaperturas,
       priorizados : (this.backlogData.priorizadosPorRegistro).length,
       repetitivos : this.backlogData.backlog.repetitivos,
       totalBandeja: this.backlogData.backlog.totalPendientes,
       totalPendientes: this.backlogData.backlog.totalPendientes - this.backlogData.backlog.repetitivos
-    }
+    };
 
     this.tblTitles = {
       estado : 'Estado',
@@ -37,6 +40,14 @@ s
       repetitivos : 'Repetitivos',
       totalBandeja : 'Total Bandeja',
       totalPendientes : 'Total Pendientes'
-    }
+    };
   }
+
+  formatDate(date: string): string {
+    const dia: string = date.substr(6, 2);
+    const mes: string = date.substr(4, 2);
+    return dia + '/' + mes;
+  }
+
+
 }
