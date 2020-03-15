@@ -102,19 +102,9 @@ export class PriorizacionComponent implements OnInit {
 
       if (creadasAux !== '0' && resueltasAux !== '0') {
         total = bajaAux + altaAux + urgenteAux;
-        if ( total !== 100) {
-          maxValue = Math.max(bajaAux, altaAux, urgenteAux);
-          if (maxValue === bajaAux) {
-            bajaAux = bajaAux - 1;
-          }
-          if (maxValue === altaAux) {
-            altaAux = altaAux - 1;
-          }
-          if (maxValue === urgenteAux) {
-            urgenteAux = urgenteAux - 1;
-          }
+        if ( total < 100) {
+            bajaAux = bajaAux + (100 - total);
         }
-
         this.dataLabels.push(fechaAux);
         this.dataArrayBaja.push(bajaAux);
         this.dataArrayAlta.push(altaAux);

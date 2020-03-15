@@ -29,7 +29,8 @@ export class ResumenComponent implements OnInit {
       priorizados : (this.backlogData.priorizadosPorRegistro).length,
       repetitivos : this.backlogData.backlog.repetitivos,
       totalBandeja: this.backlogData.backlog.totalPendientes,
-      totalPendientes: this.backlogData.backlog.totalPendientes - this.backlogData.backlog.repetitivos
+      totalPendientes: this.backlogData.backlog.totalPendientes - this.backlogData.backlog.repetitivos,
+      totalPendientesN3 :  this.backlogData.backlog.runn3
     };
 
     this.tblTitles = {
@@ -39,7 +40,8 @@ export class ResumenComponent implements OnInit {
       priorizados : 'Priorizados ' + this.myDate,
       repetitivos : 'Repetitivos',
       totalBandeja : 'Total Bandeja',
-      totalPendientes : 'Total Pendientes'
+      totalPendientes : 'Total Pendientes',
+      totalPendientesN3 : 'Pendiente N3'
     };
   }
 
