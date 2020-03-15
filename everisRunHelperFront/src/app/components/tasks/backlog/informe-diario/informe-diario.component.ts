@@ -14,8 +14,9 @@ export class InformeDiarioComponent implements OnInit {
   taskId:string;
   taskIdMessage: string = 'Id de tarea: '; 
   loadingMessage: string = 'Generando Informe';
+  errorMessage: string = 'Ah ocurrido un error al obtener los datos, por favor intente nuevamente';
   showLoadingBar: boolean = true;
-
+  errorErrorMessageFlag: boolean = false;
 
   backlogData;
   title: string = 'Informe Backlog Diario'
@@ -62,7 +63,7 @@ export class InformeDiarioComponent implements OnInit {
   getBacklog(): void{
     this.erhaApi.getInformeBacklogDiario().subscribe(data => {
       this.taskId = data.id;
-      this.updateTaskProcees(60,5)
+      this.updateTaskProcees(36,5)
     });
   }
 
@@ -73,10 +74,15 @@ export class InformeDiarioComponent implements OnInit {
         if(this.response == 'Pendiente'){
           if(--iterations) {
             this.updateTaskProcees(iterations,seconds)
+          }else{
+            this.errorErrorMessageFlag = true;
+            this.showLoadingBar = false;
           }
       }else{
-        this.backlogData = data.response;
         this.showLoadingBar = false;
+        if(!this.errorErrorMessageFlag){
+          this.backlogData = data.response;
+        }
       };
     });
     },seconds*1000);
