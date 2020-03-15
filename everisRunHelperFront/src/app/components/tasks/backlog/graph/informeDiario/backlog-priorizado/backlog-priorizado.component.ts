@@ -38,6 +38,7 @@ export class BacklogPriorizadoComponent implements OnInit {
       yAxes: [
         {
           gridLines: {
+            lineWidth: 0,
             zeroLineWidth: 1,
             zeroLineColor: 'grey',
           },
@@ -74,7 +75,7 @@ export class BacklogPriorizadoComponent implements OnInit {
           this.backlogData.backlog.priorizacionDiaAlta,
           this.backlogData.backlog.priorizacionDiaBaja];
 
-    this.dataLabels = ['Urgente', 'Alta', 'Baja'];
+    this.dataLabels = ['Alta', 'Media', 'Baja'];
 
     this.chartColorsBackgroundColor = [
       this.barColors.redBackgroundColor,

@@ -42,6 +42,7 @@ export class PriorizacionComponent implements OnInit {
       yAxes: [
         {
           gridLines: {
+            lineWidth: 0,
             zeroLineWidth: 1,
             zeroLineColor: 'grey'
           },

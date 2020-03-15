@@ -12,7 +12,7 @@ export class InformeDiarioComponent implements OnInit {
   constructor(private erhaApi: ErhaRestServices) { }
 
   taskId:string;
-  taskIdMessage: string = 'Id de tarea: '; 
+  taskIdMessage: string = 'Id de tarea: ';
   loadingMessage: string = 'Generando Informe';
   errorMessage: string = 'Ah ocurrido un error al obtener los datos, por favor intente nuevamente';
   showLoadingBar: boolean = true;
@@ -29,30 +29,30 @@ export class InformeDiarioComponent implements OnInit {
 
 
   barColors = {
-    redBackgroundColor: 'rgba(255, 53, 83, 1)',
-    redBborderColor: 'rgba(255, 53, 83, 1)',
-    redHoverBackgroundColor: 'rgba(255, 53, 83, 1)',
-    redHoverBorderColor: 'rgba(255, 53, 83, 1)',
+    redBackgroundColor: 'rgba(255, 0, 0, 1)',
+    redBborderColor: 'rgba(255, 0, 0, 1)',
+    redHoverBackgroundColor: 'rgba(255, 0, 0, 1)',
+    redHoverBorderColor: 'rgba(255, 0, 0, 1)',
 
-    greenBackgroundColor: 'rgba(106, 255, 0, 1)',
-    greenBorderColor: 'rgba(106, 255, 0, 1)',
-    greenHoverBackgroundColor: 'rgba(106, 255, 0, 1)',
-    greenHoverBorderColor: 'rgba(106, 255, 0, 1)',
+    greenBackgroundColor: 'rgba(146, 208, 80, 1)',
+    greenBorderColor: 'rgba(146, 208, 80, 1)',
+    greenHoverBackgroundColor: 'rgba(146, 208, 80, 1)',
+    greenHoverBorderColor: 'rgba(146, 208, 80, 1)',
 
-    yellowBackgroundColor: 'rgba(249, 225, 0, 1)',
-    yellowBorderColor: 'rgba(249, 225, 0, 1)',
-    yellowHoverBackgroundColor: 'rgba(249, 225, 0, 1)',
-    yellowHoverBorderColor: 'rgba(249, 225, 0, 1)',
+    yellowBackgroundColor: 'rgba(255, 255, 0, 1)',
+    yellowBorderColor: 'rgba(255, 255, 0, 1)',
+    yellowHoverBackgroundColor: 'rgba(255, 255, 0, 1)',
+    yellowHoverBorderColor: 'rgba(255, 255, 0, 1)',
 
-    blueBackgroundColor: 'rgba(0, 148, 255, 1)',
-    blueBorderColorv: 'rgba(0, 148, 255, 1)',
-    blueHoverBackgroundColor: 'rgba(0, 148, 255, 1)',
-    blueHoverBorderColor: 'rgba(0, 148, 255, 1)',
+    blueBackgroundColor: 'rgba(0, 112, 192, 1)',
+    blueBorderColorv: 'rgba(0, 112, 192, 1)',
+    blueHoverBackgroundColor: 'rgba(0, 112, 192, 1)',
+    blueHoverBorderColor: 'rgba(0, 112, 192, 1)',
 
-    orangeBackgroundColor: 'rgba(255, 137, 0, 1)',
-    orangeBorderColor: 'rgba(255, 137, 0, 1)',
-    orangeHoverBackgroundColor: 'rgba(255, 137, 0, 1)',
-    orangeHoverBorderColor: 'rgba(255, 137, 0, 1)'
+    orangeBackgroundColor: 'rgba(237, 125, 49, 1)',
+    orangeBorderColor: 'rgba(237, 125, 49, 1)',
+    orangeHoverBackgroundColor: 'rgba(237, 125, 49, 1)',
+    orangeHoverBorderColor: 'rgba(237, 125, 49, 1)'
   };
 
   ngOnInit() {
