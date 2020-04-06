@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ChartType, ChartDataSets, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+import { TmplAstBoundAttribute } from '@angular/compiler';
 
 @Component({
   selector: 'app-creadas-vs-resueltas',
@@ -80,49 +81,60 @@ export class CreadasVsResueltasComponent implements OnInit {
     let fechaAux: string;
     let creadasAux: string;
     let resueltasAux: string;
-    for (let i = (this.backlogData.datosUltimosDiasArray).length - 1 ; i > 0; i--) {
+
+    let today: Date = new Date();
+    if (today.getDay() === 1) {
+      today = new Date(new Date().setDate(new Date().getDate() - 1));
+    }
+    const dd: string = String(today.getDate()).padStart(2, '0');
+    const mm: string = String(today.getMonth() + 1).padStart(2, '0');
+    const todayFormated: string = dd + '/' + mm;
+
+    for (let i = (this.backlogData.datosUltimosDiasArray).length - 1 ; i >= 0; i--) {
       fechaAux = this.formatDate(this.backlogData.datosUltimosDiasArray[i].fecha);
-      creadasAux = this.backlogData.datosUltimosDiasArray[i].creadas;
-      resueltasAux = this.backlogData.datosUltimosDiasArray[i].resueltas;
 
-      if (creadasAux !== '0' && resueltasAux !== '0') {
+      if (fechaAux !== todayFormated) {
+        creadasAux = this.backlogData.datosUltimosDiasArray[i].creadas;
+        resueltasAux = this.backlogData.datosUltimosDiasArray[i].resueltas;
 
-        this.dataLabels.push(fechaAux);
-        this.dataArrayCreadas.push(creadasAux);
-        this.dataArrayResueltas.push(resueltasAux);
-      }
+        if (creadasAux !== '0' && resueltasAux !== '0') {
 
-      if ((this.dataLabels.length) > 6) {
-        this.dataLabels.shift();
-        this.dataArrayCreadas.shift();
-        this.dataArrayResueltas.shift();
+          this.dataLabels.push(fechaAux);
+          this.dataArrayCreadas.push(creadasAux);
+          this.dataArrayResueltas.push(resueltasAux);
+        }
+
+        if ((this.dataLabels.length) > 6) {
+          this.dataLabels.shift();
+          this.dataArrayCreadas.shift();
+          this.dataArrayResueltas.shift();
+        }
+
+        this.barChartData = [
+          {
+            data: this.dataArrayCreadas,
+            label: 'Creadas',
+            backgroundColor: this.barColors.redBackgroundColor,
+            borderColor: this.barColors.redBorderColor,
+            hoverBackgroundColor: this.barColors.redHoverBackgroundColor,
+            hoverBorderColor: this.barColors.redHoverBorderColor,
+            barPercentage: 0.4,
+            categoryPercentage: 0.7
+          },
+          {
+            data: this.dataArrayResueltas,
+            label: 'Resueltas',
+            backgroundColor: this.barColors.greenBackgroundColor,
+            borderColor: this.barColors.greenBorderColor,
+            hoverBackgroundColor: this.barColors.greenHoverBackgroundColor,
+            hoverBorderColor: this.barColors.greenHoverBorderColor,
+            barPercentage: 0.4,
+            categoryPercentage: 0.7
+          }
+        ];
+        this.barChartLabels = this.dataLabels;
       }
     }
-
-    this.barChartData = [
-      {
-        data: this.dataArrayCreadas,
-        label: 'Creadas',
-        backgroundColor: this.barColors.redBackgroundColor,
-        borderColor: this.barColors.redBorderColor,
-        hoverBackgroundColor: this.barColors.redHoverBackgroundColor,
-        hoverBorderColor: this.barColors.redHoverBorderColor,
-        barPercentage: 0.4,
-        categoryPercentage: 0.7
-      },
-      {
-        data: this.dataArrayResueltas,
-        label: 'Resueltas',
-        backgroundColor: this.barColors.greenBackgroundColor,
-        borderColor: this.barColors.greenBorderColor,
-        hoverBackgroundColor: this.barColors.greenHoverBackgroundColor,
-        hoverBorderColor: this.barColors.greenHoverBorderColor,
-        barPercentage: 0.4,
-        categoryPercentage: 0.7
-      }
-    ];
-    this.barChartLabels = this.dataLabels;
-
   }
 
   formatDate(date: string): string {
