@@ -91,30 +91,42 @@ export class PriorizacionComponent implements OnInit {
     let total: number;
     let maxValue: number;
 
-    for (let i = (this.backlogData.datosUltimosDiasArray).length - 1 ; i > 0; i--) {
+    let today: Date = new Date();
+    if (today.getDay() === 1) {
+      today = new Date(new Date().setDate(new Date().getDate() - 1));
+    }
+    const dd: string = String(today.getDate()).padStart(2, '0');
+    const mm: string = String(today.getMonth() + 1).padStart(2, '0');
+    const todayFormated: string = dd + '/' + mm;
+
+    for (let i = (this.backlogData.datosUltimosDiasArray).length - 1 ; i >= 0; i--) {
       fechaAux = this.formatDate(this.backlogData.datosUltimosDiasArray[i].fecha);
-      creadasAux = this.backlogData.datosUltimosDiasArray[i].creadas;
-      resueltasAux = this.backlogData.datosUltimosDiasArray[i].resueltas;
 
-      bajaAux = Math.trunc(this.backlogData.datosUltimosDiasArray[i].bajaPriorizadoPorcentaje * 100);
-      altaAux = Math.trunc(this.backlogData.datosUltimosDiasArray[i].altaPriorizadoPorcentaje * 100);
-      urgenteAux = Math.trunc(this.backlogData.datosUltimosDiasArray[i].urgentePriorizadoPorcentaje * 100);
+      if (fechaAux !== todayFormated) {
 
-      if (creadasAux !== '0' && resueltasAux !== '0') {
-        total = bajaAux + altaAux + urgenteAux;
-        if ( total < 100) {
-            bajaAux = bajaAux + (100 - total);
+        creadasAux = this.backlogData.datosUltimosDiasArray[i].creadas;
+        resueltasAux = this.backlogData.datosUltimosDiasArray[i].resueltas;
+
+        bajaAux = Math.trunc(this.backlogData.datosUltimosDiasArray[i].bajaPriorizadoPorcentaje * 100);
+        altaAux = Math.trunc(this.backlogData.datosUltimosDiasArray[i].altaPriorizadoPorcentaje * 100);
+        urgenteAux = Math.trunc(this.backlogData.datosUltimosDiasArray[i].urgentePriorizadoPorcentaje * 100);
+
+        if (creadasAux !== '0' && resueltasAux !== '0') {
+          total = bajaAux + altaAux + urgenteAux;
+          if ( total < 100) {
+              bajaAux = bajaAux + (100 - total);
+          }
+          this.dataLabels.push(fechaAux);
+          this.dataArrayBaja.push(bajaAux);
+          this.dataArrayAlta.push(altaAux);
+          this.dataArrayUrgente.push(urgenteAux);
         }
-        this.dataLabels.push(fechaAux);
-        this.dataArrayBaja.push(bajaAux);
-        this.dataArrayAlta.push(altaAux);
-        this.dataArrayUrgente.push(urgenteAux);
-      }
-      if ((this.dataLabels.length) > 6) {
-        this.dataLabels.shift();
-        this.dataArrayBaja.shift();
-        this.dataArrayAlta.shift();
-        this.dataArrayUrgente.shift();
+        if ((this.dataLabels.length) > 6) {
+          this.dataLabels.shift();
+          this.dataArrayBaja.shift();
+          this.dataArrayAlta.shift();
+          this.dataArrayUrgente.shift();
+        }
       }
     }
 

@@ -72,23 +72,34 @@ export class ReabiertosComponent implements OnInit {
     let resueltasAux: string;
     let reaperturasAux: number;
 
-    for (let i = (this.backlogData.datosUltimosDiasArray).length - 1 ; i > 0; i--) {
+    let today: Date = new Date();
+    if (today.getDay() === 1) {
+      today = new Date(new Date().setDate(new Date().getDate() - 1));
+    }
+    const dd: string = String(today.getDate()).padStart(2, '0');
+    const mm: string = String(today.getMonth() + 1).padStart(2, '0');
+    const todayFormated: string = dd + '/' + mm;
+
+    for (let i = (this.backlogData.datosUltimosDiasArray).length - 1 ; i >= 0; i--) {
       fechaAux = this.formatDate(this.backlogData.datosUltimosDiasArray[i].fecha);
-      reaperturasAux = Math.trunc(this.backlogData.datosUltimosDiasArray[i].reaperturas);
 
-      creadasAux = this.backlogData.datosUltimosDiasArray[i].creadas;
-      resueltasAux = this.backlogData.datosUltimosDiasArray[i].resueltas;
+      if (fechaAux !== todayFormated) {
 
-      if (creadasAux !== '0' && resueltasAux !== '0') {
-        this.dataLabels.push(fechaAux);
-        this.dataArrayReabiertas.push(reaperturasAux);
+        reaperturasAux = Math.trunc(this.backlogData.datosUltimosDiasArray[i].reaperturas);
+
+        creadasAux = this.backlogData.datosUltimosDiasArray[i].creadas;
+        resueltasAux = this.backlogData.datosUltimosDiasArray[i].resueltas;
+
+        if (creadasAux !== '0' && resueltasAux !== '0') {
+          this.dataLabels.push(fechaAux);
+          this.dataArrayReabiertas.push(reaperturasAux);
+          }
+
+        if ((this.dataLabels.length) > 6) {
+          this.dataLabels.shift();
+          this.dataArrayReabiertas.shift();
         }
-
-      if ((this.dataLabels.length) > 6) {
-        this.dataLabels.shift();
-        this.dataArrayReabiertas.shift();
       }
-
     }
 
     this.barChartData = [
