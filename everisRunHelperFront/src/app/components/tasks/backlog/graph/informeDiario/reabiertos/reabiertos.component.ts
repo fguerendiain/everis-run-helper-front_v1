@@ -71,16 +71,19 @@ export class ReabiertosComponent implements OnInit {
     let creadasAux: string;
     let resueltasAux: string;
     let reaperturasAux: number;
+    let condicionDeIteracion: number;
 
+    condicionDeIteracion = 1;
     let today: Date = new Date();
     if (today.getDay() === 1) {
+      condicionDeIteracion = 0;
       today = new Date(new Date().setDate(new Date().getDate() - 1));
     }
     const dd: string = String(today.getDate()).padStart(2, '0');
     const mm: string = String(today.getMonth() + 1).padStart(2, '0');
     const todayFormated: string = dd + '/' + mm;
 
-    for (let i = (this.backlogData.datosUltimosDiasArray).length - 1 ; i >= 0; i--) {
+    for (let i = (this.backlogData.datosUltimosDiasArray).length - 1 ; i >= condicionDeIteracion; i--) {
       fechaAux = this.formatDate(this.backlogData.datosUltimosDiasArray[i].fecha);
 
       if (fechaAux !== todayFormated) {
